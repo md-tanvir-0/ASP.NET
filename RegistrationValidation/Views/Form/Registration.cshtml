@@ -1,0 +1,172 @@
+﻿@model lab2.Models.RegistrationModel
+@{
+    ViewBag.Title = "Registration";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form and ViewBag Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            color: cornflowerblue;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-container {
+            width: 80%;
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+
+            .form-container label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            .form-container input[type="text"],
+            .form-container input[type="password"] {
+                width: calc(100% - 19px);
+                padding: 10px;
+                margin-bottom: 7px;
+                box-sizing: border-box;
+            }
+
+            .form-container input[type="radio"],
+            .form-container input[type="checkbox"] {
+                margin-right: 10px;
+            }
+
+            .form-container input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .form-container input[type="submit"]:hover {
+                    background-color: #45a049;
+                }
+
+        .viewbag-container {
+            width: 80%;
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+
+        .viewbag-section {
+            margin-bottom: 20px;
+        }
+
+        .viewbag-heading {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .viewbag-data {
+            color: #555;
+        }
+        .success-message {
+            color: #270;
+            background-color: #DFF2BF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Registration</h2>
+            @using (Html.BeginForm("Registration", "Form", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, "Name:")
+                    @Html.TextBoxFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ID, "ID:")
+                    @Html.TextBoxFor(model => model.ID)
+                    @Html.ValidationMessageFor(model => model.ID, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, "Email:")
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, "Password:")
+                    @Html.PasswordFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Birthday, "Birthday:")
+                    @Html.TextBoxFor(model => model.Birthday, new { type = "date" })
+                    @Html.ValidationMessageFor(model => model.Birthday, null, new { @class = "text-danger" })
+                </div>
+
+                <input type="submit" value="Register" />
+            }<br />
+            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+            {
+                <div class="success-message">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
+        </div>
+    </div>
+    <div class="viewbag-container">
+        <h2>ViewBag Data</h2>
+
+        <div class="viewbag-section">
+            <div class="viewbag-heading">Name:</div>
+            <div class="viewbag-data">@ViewBag.Name</div>
+        </div>
+        <br />
+        <div class="viewbag-section">
+            <div class="viewbag-heading">ID:</div>
+            <div class="viewbag-data">@ViewBag.ID</div>
+        </div>
+        <br />
+        <div class="viewbag-section">
+            <div class="viewbag-heading">Email:</div>
+            <div class="viewbag-data">@ViewBag.Email</div>
+        </div>
+        <br />
+        <div class="viewbag-section">
+            <div class="viewbag-heading">Password:</div>
+            <div class="viewbag-data">@ViewBag.Password</div>
+        </div>
+        <br />
+        <div class="viewbag-section">
+            <div class="viewbag-heading">Birthday:</div>
+            <div class="viewbag-data">@ViewBag.Birthday</div>
+        </div>
+    </div>
+
+</body>
+</html>
