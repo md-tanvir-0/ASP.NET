@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinalProject2.0", "ZEROhunger2.0\FinalProject2.0.csproj", "{B24EB9B0-F9E7-45D2-B6C9-3EA7E9543B1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B24EB9B0-F9E7-45D2-B6C9-3EA7E9543B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B24EB9B0-F9E7-45D2-B6C9-3EA7E9543B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B24EB9B0-F9E7-45D2-B6C9-3EA7E9543B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B24EB9B0-F9E7-45D2-B6C9-3EA7E9543B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C016DE2-EA15-4F6E-8AC1-BB663646350F}
+	EndGlobalSection
+EndGlobal
