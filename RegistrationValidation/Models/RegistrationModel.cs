@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace lab2.Models
@@ -16,11 +16,13 @@ namespace lab2.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "ID is required")]
-        [RegularExpression(@"^\d{2}-\d{5}-\d$", ErrorMessage = "Invalid ID format. Correct format is XX-XXXXX-X with numbers only.")]
+        [RegularExpression(@"^\d{2}-\d{5}-[1-3]$", ErrorMessage = "Invalid ID format. Correct format is XX-XXXXX-X with numbers only.")]
+      
         public string ID { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"^\d{2}-\d{5}-\d@student\.aiub\.edu$", ErrorMessage = "Invalid email format. Correct format is XX-XXXXX-X@student.aiub.edu with numbers only.")]
+        [RegularExpression(@"^\d{2}-\d{5}-[1-3]@student\.aiub\.edu$", ErrorMessage = "Invalid email format. Correct format is XX-XXXXX-X@student.aiub.edu with numbers only.")]
+        [CustomValidation(typeof(RegistrationModel), "ValidateIdAndEmailMatching", ErrorMessage = "ID and Email do not match.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Date of Birth is required")]
@@ -53,6 +55,26 @@ namespace lab2.Models
                 return new ValidationResult("Invalid date format.");
             }
 
+        }
+
+        public static ValidationResult ValidateIdAndEmailMatching(string value, ValidationContext validationContext)
+        {
+            var model = (RegistrationModel)validationContext.ObjectInstance;
+
+            if (model.ID != null && model.Email != null && model.ID.Length >= 8 && model.Email.Length >= 8)
+            {
+                // Extracting the xx-xxxxx-x part from the ID and Email
+                string idPrefix = model.ID.Substring(0, 8);
+                string emailPrefix = model.Email.Substring(0, 8);
+
+                // Checking if the prefixes are same
+                if (idPrefix != emailPrefix)
+                {
+                    return new ValidationResult("ID and Email do not match.");
+                }
+            }
+
+            return ValidationResult.Success;
         }
     }
 }
