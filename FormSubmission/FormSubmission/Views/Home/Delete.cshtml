@@ -1,0 +1,43 @@
+﻿@model FormSubmission.EF.User
+
+@{
+    ViewBag.Title = "Delete Confirmation";
+}
+
+<h2>Delete Confirmation</h2>
+
+<p>Are you sure you want to delete the user with the following details?</p>
+
+<div>
+    <h4>User Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Home", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken() <!-- Include anti-forgery token -->
+        <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+        @Html.ActionLink("Cancel", "List", null, new { @class = "btn btn-default" })
+    }
+</div>
