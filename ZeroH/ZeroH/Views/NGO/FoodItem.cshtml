@@ -1,0 +1,152 @@
+﻿@model IEnumerable<ZeroH.DTOs.FoodItemDTO>
+
+@{
+    ViewBag.Title = "FoodItem";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>FoodItem</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #F0F0F0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .btn-create-new {
+            background-color: #36C;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn-create-new:hover {
+                background-color: #2A92BF;
+            }
+
+        .table {
+            background-color: #FFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+            .table th, .table td {
+                padding: 10px 15px;
+                border-bottom: 1px solid #E0E0E0;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #F4F4F4;
+                color: #333;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .table tbody tr:hover {
+                background-color: #F5F5F5;
+            }
+
+        .action-links {
+            padding: 10px 15px;
+        }
+
+        .btn-assign {
+            background-color: #DC3545;
+            color: #FFF;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+            .btn-assign:hover {
+                background-color: #C82333;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>FoodItem</h2>
+        <a href="/NGO/AddEmployee" class="btn btn-create-new">Add employee</a>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FoodName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExpiryDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LoginLog.Username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Restaurant.Name)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.FoodItems)
+                    {
+                        <tr>
+                            <td>
+                                @item.FoodName
+                            </td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                            <td>
+                                @item.ExpiryDate
+                            </td>
+                            <td>
+                                @item.Status
+                            </td>
+                            <td>
+                                @item.LoginLog.Username
+                            </td>
+                            <td>
+                                @item.Restaurant.Name
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <input type="hidden" name="FoodItem_ID" value="@item.FoodItem_ID">
+                                    <input type="hidden" name="FoodName" value="@item.FoodName">
+                                    <input type="hidden" name="Quantity" value="@item.Quantity">
+                                    <input type="hidden" name="R_ID" value="@item.R_ID">
+                                    <input type="hidden" name="Status" value="@item.Status">
+                                    <input type="hidden" name="Restaurant.Name" value="@item.Restaurant.Name">
+                                    <input type="hidden" name="Restaurant.Restaurant_ID" value="@item.Restaurant.Restaurant_ID">
+                                    <input type="hidden" name="Restaurant.Adress" value="@item.Restaurant.Address">
+                                    <input type="submit" value="Assigne" class="btn btn-danger">
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿@model ZeroH.DTOs.FoodItemDTO
+@{
+    ViewBag.Title = "View";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #4A154B;
+            font-family: Arial, sans-serif;
+            color: #FFF;
+            margin-bottom: 80px; /* Reserve space for the footer */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .form-container {
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #CCC;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #28A745;
+            color: #FFF;
+            border: none;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #218838;
+            }
+
+        h2 {
+            margin-top: 0;
+            color: #FFF;
+        }
+
+        p {
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        footer {
+            background-color: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Assign Food</h2>
+        <div class="form-container">
+            <form method="post" action="">
+                <p>Food Name</p>
+                <input type="text" name="FoodName" value=""><br>
+                <p>Quantity</p>
+                <input type="text" name="Quantity" value=""><br>
+                <p>Preservation Time</p>
+                <input type="date" name="ExpiryDate" value=""><br>
+                <input type="hidden" name="R_ID" value="@ViewBag.data2.Restaurant_ID">
+                <input type="hidden" name="LogRequest_ID" value="@ViewBag.data.Log_ID">
+                <input type="submit" value="Assign Food">
+            </form>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Your Company Name. All rights reserved.
+    </footer>
+</body>
+</html>

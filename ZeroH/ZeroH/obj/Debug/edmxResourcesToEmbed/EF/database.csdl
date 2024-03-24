@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HungerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActivityLog">
+    <Key>
+      <PropertyRef Name="ALog_ID" />
+    </Key>
+    <Property Name="ALog_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Timestamp" Type="DateTime" Precision="3" />
+    <Property Name="Action" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Requester_ID" Type="Int32" Nullable="false" />
+    <Property Name="Restaurant_ID" Type="Int32" Nullable="false" />
+    <Property Name="NGO_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CollectRequest">
+    <Key>
+      <PropertyRef Name="Request_ID" />
+    </Key>
+    <Property Name="Request_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CollectionTime" Type="DateTime" Precision="3" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Assignee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Restaurant_ID" Type="Int32" Nullable="false" />
+    <Property Name="Food_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_CollectRequest_Employee" FromRole="CollectRequest" ToRole="Employee" />
+    <NavigationProperty Name="FoodItem" Relationship="Self.FK_CollectRequest_FoodItem" FromRole="CollectRequest" ToRole="FoodItem" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_CollectRequest_Restaurant" FromRole="CollectRequest" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Distribution">
+    <Key>
+      <PropertyRef Name="Distribution_ID" />
+    </Key>
+    <Property Name="Distribution_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Clt_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeLog_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactInformation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CollectRequests" Relationship="Self.FK_CollectRequest_Employee" FromRole="Employee" ToRole="CollectRequest" />
+    <NavigationProperty Name="LoginLog" Relationship="Self.FK_Employee_LoginLog" FromRole="Employee" ToRole="LoginLog" />
+  </EntityType>
+  <EntityType Name="FoodItem">
+    <Key>
+      <PropertyRef Name="FoodItem_ID" />
+    </Key>
+    <Property Name="FoodItem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LogRequest_ID" Type="Int32" Nullable="false" />
+    <Property Name="R_ID" Type="Int32" Nullable="false" />
+    <Property Name="FoodName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CollectRequests" Relationship="Self.FK_CollectRequest_FoodItem" FromRole="FoodItem" ToRole="CollectRequest" />
+    <NavigationProperty Name="LoginLog" Relationship="Self.FK_FoodItem_LoginLog" FromRole="FoodItem" ToRole="LoginLog" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_FoodItem_Restaurant" FromRole="FoodItem" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="LoginLog">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_LoginLog" FromRole="LoginLog" ToRole="Employee" />
+    <NavigationProperty Name="FoodItems" Relationship="Self.FK_FoodItem_LoginLog" FromRole="LoginLog" ToRole="FoodItem" />
+    <NavigationProperty Name="NGOes" Relationship="Self.FK_NGO_LoginLog" FromRole="LoginLog" ToRole="NGO" />
+    <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurant_LoginLog" FromRole="LoginLog" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="NGO">
+    <Key>
+      <PropertyRef Name="NGO_ID" />
+    </Key>
+    <Property Name="NGO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactInformation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MissionStatement" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NGOLog_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoginLog" Relationship="Self.FK_NGO_LoginLog" FromRole="NGO" ToRole="LoginLog" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="Restaurant_ID" />
+    </Key>
+    <Property Name="Restaurant_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactInformation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResturantLog_ID" Type="Int32" Nullable="false" />
+    <Property Name="RNGO_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CollectRequests" Relationship="Self.FK_CollectRequest_Restaurant" FromRole="Restaurant" ToRole="CollectRequest" />
+    <NavigationProperty Name="FoodItems" Relationship="Self.FK_FoodItem_Restaurant" FromRole="Restaurant" ToRole="FoodItem" />
+    <NavigationProperty Name="LoginLog" Relationship="Self.FK_Restaurant_LoginLog" FromRole="Restaurant" ToRole="LoginLog" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_CollectRequest_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="CollectRequest" Type="Self.CollectRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="CollectRequest">
+        <PropertyRef Name="Assignee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectRequest_FoodItem">
+    <End Role="FoodItem" Type="Self.FoodItem" Multiplicity="1" />
+    <End Role="CollectRequest" Type="Self.CollectRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodItem">
+        <PropertyRef Name="FoodItem_ID" />
+      </Principal>
+      <Dependent Role="CollectRequest">
+        <PropertyRef Name="Food_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CollectRequest_Restaurant">
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="CollectRequest" Type="Self.CollectRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="Restaurant_ID" />
+      </Principal>
+      <Dependent Role="CollectRequest">
+        <PropertyRef Name="Restaurant_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_LoginLog">
+    <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginLog">
+        <PropertyRef Name="Log_ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeLog_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodItem_LoginLog">
+    <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="1" />
+    <End Role="FoodItem" Type="Self.FoodItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginLog">
+        <PropertyRef Name="Log_ID" />
+      </Principal>
+      <Dependent Role="FoodItem">
+        <PropertyRef Name="LogRequest_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodItem_Restaurant">
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="FoodItem" Type="Self.FoodItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="Restaurant_ID" />
+      </Principal>
+      <Dependent Role="FoodItem">
+        <PropertyRef Name="R_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NGO_LoginLog">
+    <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="1" />
+    <End Role="NGO" Type="Self.NGO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginLog">
+        <PropertyRef Name="Log_ID" />
+      </Principal>
+      <Dependent Role="NGO">
+        <PropertyRef Name="NGOLog_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurant_LoginLog">
+    <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="1" />
+    <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoginLog">
+        <PropertyRef Name="Log_ID" />
+      </Principal>
+      <Dependent Role="Restaurant">
+        <PropertyRef Name="ResturantLog_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HungerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActivityLogs" EntityType="Self.ActivityLog" />
+    <EntitySet Name="CollectRequests" EntityType="Self.CollectRequest" />
+    <EntitySet Name="Distributions" EntityType="Self.Distribution" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="FoodItems" EntityType="Self.FoodItem" />
+    <EntitySet Name="LoginLogs" EntityType="Self.LoginLog" />
+    <EntitySet Name="NGOes" EntityType="Self.NGO" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_CollectRequest_Employee" Association="Self.FK_CollectRequest_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="CollectRequest" EntitySet="CollectRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectRequest_FoodItem" Association="Self.FK_CollectRequest_FoodItem">
+      <End Role="FoodItem" EntitySet="FoodItems" />
+      <End Role="CollectRequest" EntitySet="CollectRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CollectRequest_Restaurant" Association="Self.FK_CollectRequest_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="CollectRequest" EntitySet="CollectRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_LoginLog" Association="Self.FK_Employee_LoginLog">
+      <End Role="LoginLog" EntitySet="LoginLogs" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodItem_LoginLog" Association="Self.FK_FoodItem_LoginLog">
+      <End Role="LoginLog" EntitySet="LoginLogs" />
+      <End Role="FoodItem" EntitySet="FoodItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodItem_Restaurant" Association="Self.FK_FoodItem_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="FoodItem" EntitySet="FoodItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NGO_LoginLog" Association="Self.FK_NGO_LoginLog">
+      <End Role="LoginLog" EntitySet="LoginLogs" />
+      <End Role="NGO" EntitySet="NGOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurant_LoginLog" Association="Self.FK_Restaurant_LoginLog">
+      <End Role="LoginLog" EntitySet="LoginLogs" />
+      <End Role="Restaurant" EntitySet="Restaurants" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

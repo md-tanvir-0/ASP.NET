@@ -1,0 +1,140 @@
+﻿@model ZeroH.DTOs.RestaurantDTO
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #4A154B;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background-color: #F7F7F7;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: #333;
+            text-align: center;
+            position: unset;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Style for buttons */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            flex: 1; /* Take up remaining space */
+            margin-right: 50px; /* Add a small margin between buttons */
+            width: 30px;
+        }
+
+        .signin-button {
+            flex: 1; /* Take up remaining space */
+            margin-left: 5px;
+            margin-right: 5px; /* Add a small margin between buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="text-center">Registration</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <select name="city" id="city" class="form-control">
+                        <option value="">Select City</option>
+                        <option value="Dhaka North">Dhaka North</option>
+                        <option value="Dhaka South">Dhaka South</option>
+                        <option value="Chattogram">Chattogram</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Cumilla">Cumilla</option>
+                        <option value="Gazipur">Gazipur</option>
+                        <option value="Narayanganj">Narayanganj</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.ContactInformation, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ContactInformation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactInformation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.LoginLog.Username, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.LoginLog.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LoginLog.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.LoginLog.Password, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.LoginLog.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LoginLog.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button group -->
+                <div class="btn-group">
+                    <!-- Sign-up button -->
+                    <button type="submit" class="btn btn-primary signin-button">Sign up</button>
+                    <!-- Back button -->
+                    <a href="/Home/Index" class="btn btn-secondary back-button">Back</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

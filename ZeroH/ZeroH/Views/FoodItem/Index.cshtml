@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ZeroH.DTOs.FoodItemDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #4A154B;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #FFF;
+        }
+        tbody{
+            background-color:wheat;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #6C246E;
+            color: #FFF;
+        }
+
+
+        .action-links a {
+            color: #FFF;
+            margin-right: 10px;
+        }
+
+            .action-links a:hover {
+                text-decoration: none;
+                color: #FFF;
+            }
+
+        .create-new-link {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            color: #FFF;
+            background-color: transparent;
+            border: 1px solid #FFF;
+            padding: 6px 10px;
+        }
+
+        .footer {
+            background-color: #F7F7F7;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: #333;
+            text-align: center;
+            position: absolute; /* Change 'inherit' to 'absolute' */
+            bottom: 0;
+            width: 100%;
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Index</h2>
+        <p class="create-new-link">
+            @Html.ActionLink("Add", "FoodItem", null, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FoodName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.ExpiryDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th>@Html.DisplayNameFor(model => model.LoginLog.Username)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FoodName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ExpiryDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LoginLog.Username)</td>
+                        <td class="action-links">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.FoodItem_ID }, new { @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("Details", "Details", new { id = item.FoodItem_ID }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.FoodItem_ID }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

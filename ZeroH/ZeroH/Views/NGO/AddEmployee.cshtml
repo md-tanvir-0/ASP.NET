@@ -1,0 +1,36 @@
+﻿@model ZeroH.DTOs.EmployeeDTO
+
+@{
+    ViewBag.Title = "Add Employee";
+}
+
+<h2>Add Employee</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactInformation)
+        @Html.TextBoxFor(model => model.ContactInformation, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ContactInformation, "", new { @class = "text-danger" })
+    </div>
+
+    <!-- Include input fields for Username and Password -->
+    <div class="form-group">
+        @Html.Label("Username")
+        <input type="text" name="LoginLog.Username" class="form-control" />
+    </div>
+    <div class="form-group">
+        @Html.Label("Password")
+        <input type="password" name="LoginLog.Password" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Employee</button>
+}

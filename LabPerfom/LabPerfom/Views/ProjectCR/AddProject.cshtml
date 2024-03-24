@@ -1,0 +1,20 @@
+﻿@model IEnumerable<LabPerfom.DTO.ProjectDTO>
+@{
+    ViewBag.Title = "AddProject";
+}
+
+<h2>AddProject</h2>
+
+<form action="" method="post" class="form-control">
+    <p>Title:</p><br>
+    <input type="text" name="title" value="">
+    <p>description:</p><br>
+    <input type="text" name="description" value="">
+    <p>deadline:</p><br>
+    <input type="text" name="deadline" value="">
+    <p>status:</p><br>
+    <input type="text" name="status" value="">
+    <input type="hidden" name="PCId" value="3">
+    <input type="hidden" name="AId" value="1">
+    <input type="submit" value="ASSign" class="btn btn-danger">
+</form>

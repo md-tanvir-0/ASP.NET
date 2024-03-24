@@ -1,0 +1,98 @@
+﻿@model ZeroH.DTOs.LoginDTO
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #4A154B;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background-color: #F7F7F7;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: #333;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Style for buttons */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            flex: 1; /* Take up remaining space */
+            margin-right: 50px; /* Add a small margin between buttons */
+            width: 30px;
+        }
+
+        .signin-button {
+            flex: 1; /* Take up remaining space */
+            margin-left: 5px;
+            margin-right: 5px; /* Add a small margin between buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="text-center">Login</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Button group -->
+                <div class="btn-group">
+                    <!-- Sign-in button -->
+                    <button type="submit" class="btn btn-primary signin-button">Sign in</button>
+                    <!-- Back button -->
+                    <a href="/Home/Index" class="btn btn-secondary back-button">Back</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

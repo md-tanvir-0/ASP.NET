@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Model.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="members">
+      <EntityTypeMapping TypeName="Model.member">
+        <MappingFragment StoreEntitySet="member">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="Model.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="deadline" ColumnName="deadline" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="PCId" ColumnName="PCId" />
+          <ScalarProperty Name="AId" ColumnName="AId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectCRs">
+      <EntityTypeMapping TypeName="Model.ProjectCR">
+        <MappingFragment StoreEntitySet="ProjectCR">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectMembers">
+      <EntityTypeMapping TypeName="Model.ProjectMember">
+        <MappingFragment StoreEntitySet="ProjectMember">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="MId" ColumnName="MId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="member">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="deadline" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PCId" Type="int" Nullable="false" />
+    <Property Name="AId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectCR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pass" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectMember">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PId" Type="int" Nullable="false" />
+    <Property Name="MId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Project_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="AId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_projectCR">
+    <End Role="ProjectCR" Type="Self.ProjectCR" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectCR">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="PCId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectMember_member">
+    <End Role="member" Type="Self.member" Multiplicity="1" />
+    <End Role="ProjectMember" Type="Self.ProjectMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="member">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectMember">
+        <PropertyRef Name="MId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectMember_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="ProjectMember" Type="Self.ProjectMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProjectMember">
+        <PropertyRef Name="PId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectCR" EntityType="Self.ProjectCR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectMember" EntityType="Self.ProjectMember" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Project_Admin" Association="Self.FK_Project_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_projectCR" Association="Self.FK_Project_projectCR">
+      <End Role="ProjectCR" EntitySet="ProjectCR" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectMember_member" Association="Self.FK_ProjectMember_member">
+      <End Role="member" EntitySet="member" />
+      <End Role="ProjectMember" EntitySet="ProjectMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectMember_Project" Association="Self.FK_ProjectMember_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectMember" EntitySet="ProjectMember" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

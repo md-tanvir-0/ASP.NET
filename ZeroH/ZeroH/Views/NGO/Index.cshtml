@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ZeroH.DTOs.FoodItemDTO>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: wheat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+            .table th, .table td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .table th {
+                background-color: #F4F4F4;
+                font-weight: bold;
+            }
+
+            .table td {
+                font-size: 14px;
+            }
+
+            .table tbody tr:hover {
+                background-color: #F0F0F0;
+            }
+
+        .action-links a {
+            margin-right: 5px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+            .action-links a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Index</h2>
+        <p>
+            <a href="#" class="btn btn-primary">Create New</a>
+        </p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                        <th>User Name</th>
+                        <th>Restaurant Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.FoodName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ExpiryDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LoginLog.Username)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Restaurant.Name)</td>
+                            <td class="action-links">
+                                <a href="#" class="edit-link">Edit</a>
+                                <a href="#" class="details-link">Details</a>
+                                <a href="#" class="delete-link">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

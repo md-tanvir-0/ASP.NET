@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<head>
+
+    <body>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+
+        @RenderBody()
+
+    <footer>
+        <div class="container">
+            <p>Contact Us: info@Hunger0.com</p>
+        </div>
+        <p>&copy; @DateTime.Now.Year By Tanvir </p>
+    </footer>
+
+        <script src="~/Content/bootstrap.bundle.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</head>
+</html>

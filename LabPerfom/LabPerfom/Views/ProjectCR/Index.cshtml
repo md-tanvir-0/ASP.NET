@@ -1,0 +1,21 @@
+﻿@model IEnumerable<LabPerfom.DTO.ProjectDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>Title</th>>
+        <th>Description</th>
+        <th>Deadline</th>
+    </tr>
+    @foreach(var job in ViewBag.Project) 
+    {
+        <tr>
+            <td>@job.title</td>
+            <td>@job.description</td>
+            <td>@job.deadline</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="03f1f0ab69654f69827166b63a785093" Name="Diagram1">
+        <EntityTypeShape EntityType="HungerModel.ActivityLog" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.CollectRequest" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.Distribution" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.Employee" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.FoodItem" Width="1.5" PointX="7.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.LoginLog" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.NGO" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.Restaurant" Width="1.5" PointX="2.875" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HungerModel.sysdiagram" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="HungerModel.FK_CollectRequest_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_CollectRequest_FoodItem" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_CollectRequest_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_Employee_LoginLog" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_FoodItem_LoginLog" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_FoodItem_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_NGO_LoginLog" ManuallyRouted="false" />
+        <AssociationConnector Association="HungerModel.FK_Restaurant_LoginLog" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

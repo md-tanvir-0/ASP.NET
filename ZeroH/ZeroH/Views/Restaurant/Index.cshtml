@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ZeroH.DTOs.RestaurantDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #4A154B;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background-color: #F7F7F7;
+            margin-top: 50px;
+            padding: 20px 0;
+            color: #333;
+            text-align: center;
+            position: unset;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Style for buttons */
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            flex: 1; /* Take up remaining space */
+            margin-right: 50px; /* Add a small margin between buttons */
+            width: 30px;
+        }
+
+        .signin-button {
+            flex: 1; /* Take up remaining space */
+            margin-left: 5px;
+            margin-right: 5px; /* Add a small margin between buttons */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="text-center">Restaurant Profile</h2>
+            <div class="panel-body">
+                <!-- Display restaurant user name here -->
+                @foreach (var item in Model) { 
+                    <p>Restaurant User Name: @Html.DisplayFor(modelItem => item.LoginLog.Username)</p>
+                    }
+                <!-- Assuming Username is the property that holds the restaurant user name -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

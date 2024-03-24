@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HungerModelStoreContainer" CdmEntityContainer="HungerEntities">
+    <EntitySetMapping Name="ActivityLogs">
+      <EntityTypeMapping TypeName="HungerModel.ActivityLog">
+        <MappingFragment StoreEntitySet="ActivityLog">
+          <ScalarProperty Name="ALog_ID" ColumnName="ALog_ID" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Requester_ID" ColumnName="Requester_ID" />
+          <ScalarProperty Name="Restaurant_ID" ColumnName="Restaurant_ID" />
+          <ScalarProperty Name="NGO_ID" ColumnName="NGO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollectRequests">
+      <EntityTypeMapping TypeName="HungerModel.CollectRequest">
+        <MappingFragment StoreEntitySet="CollectRequest">
+          <ScalarProperty Name="Request_ID" ColumnName="Request_ID" />
+          <ScalarProperty Name="CollectionTime" ColumnName="CollectionTime" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Assignee_ID" ColumnName="Assignee_ID" />
+          <ScalarProperty Name="Restaurant_ID" ColumnName="Restaurant_ID" />
+          <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Distributions">
+      <EntityTypeMapping TypeName="HungerModel.Distribution">
+        <MappingFragment StoreEntitySet="Distribution">
+          <ScalarProperty Name="Distribution_ID" ColumnName="Distribution_ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Clt_ID" ColumnName="Clt_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="HungerModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="EmployeeLog_ID" ColumnName="EmployeeLog_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactInformation" ColumnName="ContactInformation" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodItems">
+      <EntityTypeMapping TypeName="HungerModel.FoodItem">
+        <MappingFragment StoreEntitySet="FoodItem">
+          <ScalarProperty Name="FoodItem_ID" ColumnName="FoodItem_ID" />
+          <ScalarProperty Name="LogRequest_ID" ColumnName="LogRequest_ID" />
+          <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginLogs">
+      <EntityTypeMapping TypeName="HungerModel.LoginLog">
+        <MappingFragment StoreEntitySet="LoginLog">
+          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGOes">
+      <EntityTypeMapping TypeName="HungerModel.NGO">
+        <MappingFragment StoreEntitySet="NGO">
+          <ScalarProperty Name="NGO_ID" ColumnName="NGO_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactInformation" ColumnName="ContactInformation" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MissionStatement" ColumnName="MissionStatement" />
+          <ScalarProperty Name="NGOLog_ID" ColumnName="NGOLog_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="HungerModel.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurant">
+          <ScalarProperty Name="Restaurant_ID" ColumnName="Restaurant_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactInformation" ColumnName="ContactInformation" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="User_Type" ColumnName="User_Type" />
+          <ScalarProperty Name="ResturantLog_ID" ColumnName="ResturantLog_ID" />
+          <ScalarProperty Name="RNGO_ID" ColumnName="RNGO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HungerModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
